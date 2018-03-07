@@ -1,0 +1,14 @@
+Lab 10: Transcriptome Assembly
+--
+
+
+> Assemble using the ORP
+
+```
+$HOME/Oyster_River_Protocol/oyster.mk main \
+MEM=50 \
+CPU=24 \
+READ1=reads.1.fq \
+READ2=reads.2.fq \
+RUNOUT=smallassembly
+```
