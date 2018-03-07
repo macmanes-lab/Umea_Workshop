@@ -1,5 +1,7 @@
-Lab 10: Transcriptome Assembly
+Transcriptome Assembly Practical
 --
+
+You all should be using an AMI where the requisite software is already installed. For whne you get home, and want to install this on your own machines, see http://oyster-river-protocol.readthedocs.io/en/latest/aws_setup.html
 
 
 > Assemble using the ORP
