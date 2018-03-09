@@ -25,5 +25,5 @@ RUNOUT=ORPtest
 > BUSCO
 
 ```
-python $(which run_BUSCO.py) -i $HOME/share/SRR3499127.orthomerged.fasta -m transcriptome --cpu 4 -o plant
+python $(which run_BUSCO.py) -m transcriptome -i $HOME/share/SRR1221220.orthomerged.fasta --out SRR1221220 -t 2
 ```
