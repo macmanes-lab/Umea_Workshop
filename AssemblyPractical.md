@@ -72,7 +72,7 @@ So you have an assembly, now how good is it? One way is to look at the assembly 
 **Note:** The ORP runs BUSCO automatically, and has done so for your dummy assembly. See `$HOME/assembly_practical/reports/run*orthomerged/short_summary*txt`. A real assembly would score **much** better, hopefully...
 
 ```
-mkdir $HOME/assembly_eval && cd $HOME/assembly_eval
+mkdir $HOME/assembly_practical/assembly_eval && cd $HOME/assembly_practical/assembly_eval
 
 python $(which run_BUSCO.py) -c 2 \
 -m transcriptome \
@@ -102,7 +102,7 @@ C:0.3%[S:0.0%,D:0.3%],F:0.3%,M:99.4%,n:303
 ##### Evaluating assembly structure using TransRate
 
 ```
-cd $HOME/assembly_eval
+cd $HOME/assembly_practical/assembly_eval
 
 transrate -o transrate_ORPtest_YOURNAME -t 2 \
 -a $HOME/assembly_practical/assemblies/ORPtest_YOURNAME.orthomerged.fasta \
@@ -171,22 +171,37 @@ weighted	5638.68556
 
 ```
 
-cd $HOME/assembly_practical/
+cd $HOME/assembly_practical/assembly_practical/
 
 salmon index --no-version-check \
 --type quasi \
 -k 31 \
--i ORPtest2.ortho.idx \
--t $HOME/assembly_practical/assemblies/ORPtest2.orthomerged.fasta
-
+-i ORPtest_YOURNAME.ortho.idx \
+-t $HOME/assembly_practical/assemblies/ORPtest_YOURNAME.orthomerged.fasta
+ORPtest_YOURNAME
 
 
 salmon quant --no-version-check -p 2 \
--i ORPtest2.ortho.idx \
+-i ORPtest_YOURNAME.ortho.idx \
 --seqBias --gcBias -l a \
--1 $HOME/assembly_practical/rcorr/ORPtest2.TRIM_1P.cor.fq \
--2 $HOME/assembly_practical/rcorr/ORPtest2.TRIM_2P.cor.fq \
--o $HOME/assembly_practical/quants/salmon_orthomerged_ORPtest2
+-1 $HOME/assembly_practical/rcorr/ORPtest_YOURNAME.TRIM_1P.cor.fq \
+-2 $HOME/assembly_practical/rcorr/ORPtest_YOURNAME.TRIM_2P.cor.fq \
+-o $HOME/assembly_practical/assembly_eval/salmon_orthomerged_ORPtest_YOURNAME
 ```
 
-Note: The ORP runs BUSCO automatically, and has done so for your dummy assembly. See $HOME/assembly_practical/reports/run*orthomerged/short_summary*txt. A real assembly would score much better, hopefully...
+Note: The ORP runs BUSCO automatically, and has done so for your dummy assembly. See `$HOME/assembly_practical/quants/salmon_orthomerged_ORPtest_YOURNAME/quants.sf` A real assembly would score much better, hopefully...
+
+
+```
+Name    Length  EffectiveLength TPM     NumReads
+Single_29       800     665.243 15070.675944    1080.000000
+Single_23       519     381.486 15963.011041    656.000000
+Single_25       1141    872.521 9075.326798     853.000000
+Single_103      237     82.000  1970.671194     17.407591
+Single_101      350     188.824 2310.625863     47.000000
+Single_55       366     224.992 13368.014888    324.000000
+Single_56       443     268.606 13506.878854    390.823744
+Single_50       936     786.806 6177.772999     523.612910
+Single_53       1355    1235.517        7926.712663     1055.000000
+Shannon_ORPtest.shannon_cremaining1_62_0        3036    3096.499        7700.570713     2568.647157
+```
