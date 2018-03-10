@@ -27,9 +27,9 @@ This tutorial uses a very small dataset, so that everyone can have the opportuni
 
 #### Tutorial Begins
 
-> The 1st thing you should always do when logging in to a new machine is explore the directory structure. Where are the data, where are programs installed, etc.
+The 1st thing you should always do when logging in to a new machine is explore the directory structure. Where are the data, where are programs installed, etc.
 
-> Make a directory that will contain all of your assembly materials. In general, it's smart practice to have individual folders for each step in your bioinformatics pipeline.
+Make a directory that will contain all of your assembly materials. In general, it's smart practice to have individual folders for each step in your bioinformatics pipeline.
 
 ```
 mkdir $HOME/assembly_practical && cd $HOME/assembly_practical
@@ -37,14 +37,14 @@ mkdir $HOME/assembly_practical && cd $HOME/assembly_practical
 
 What is this `&&` thing?? It basically serves to link two commands together, **IF** the 1st one succeeds. So, `do command 1, do command 2 if 1 succeeds, do command 3 if command 2 succeeds`
 
-> Assemble using the ORP
+##### Assemble using the ORP
 
 ```
 $HOME/Oyster_River_Protocol/oyster.mk main \
 MEM=7 \
 CPU=2 \
-READ1=$HOME/share/reads.1.fq.gz \
-READ2=$HOME/share/reads.2.fq.gz \
+READ1=$HOME/share/Day04/read.1.fastq \
+READ2=$HOME/share/Day04/read.2.fastq \
 RUNOUT=ORPtest
 ```
 
@@ -59,8 +59,31 @@ Let's unpack this:
 - `RUNOUT` Name the output. This name will be included in the final assembly, so choose wisely.
 - appending `--dry-run` to the end of the command will print out to your screen the commands that will be run on your dataset, but they won't actually be run.   
 
-> BUSCO
+
+How many resources do you need?
+
+- **RAM** The amount of RAM you need scales with the number of unique kmers. The number of unique kmers is positively correlated with number of reads, which is a far more accessible number. In general, you need about 1GB RAM per million reads.
+- **CPUs** More is better, but machines with between 24 and 64 cores are common. Note the assembly process is not able to leverage MPI.
+
+##### Evaluating content using BUSCO
+
+So you have an assembly, now how good is it? One way is to look at the assembly content. Are all the expected genes present? Fo this part of the exercise, We're going to use a 'real' assembly.
+
+**Note:** The ORP runs BUSCO automatically, and has done so for your dummy assembly. See ``
 
 ```
-python $(which run_BUSCO.py) -m transcriptome -i $HOME/share/SRR1221220.orthomerged.fasta --out SRR1221220 -t 2
+mkdir $HOME/assembly_eval && cd $HOME/assembly_eval
+
+python $(which run_BUSCO.py) -m transcriptome -i $HOME/share/Day04/SRR1221220.orthomerged.fasta --out SRR1221220 -c 2
 ```
+
+Unpacking
+- `$(which run_BUSCO.py)` This is a trick to call a script using it's full path, without having to type the full path out yourself. Type `which run_BUSCO.py` and see what it returns..
+- `-m transcriptome` you want to run BUSCO in transcriptome mode. If you were trying to analyze a genome, then your type `-m genome`
+- `-i $HOME/share/SRR1221220.orthomerged.fasta` this is the input
+- `--out SRR1221220` the output prefix.
+- `-c 2` the number of CPUs to use to the analysis. Use as many as you have!
+
+##### Evaluating assembly structure using TransRate
+
+##### Quantification
