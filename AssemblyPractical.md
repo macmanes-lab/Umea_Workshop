@@ -87,6 +87,18 @@ Unpacking
 - `--out SRR1221220` the output prefix.
 - `-c 2` the number of CPUs to use to the analysis. Use as many as you have!
 
+
+```
+C:0.3%[S:0.0%,D:0.3%],F:0.3%,M:99.4%,n:303
+
+1	Complete BUSCOs (C)
+0	Complete and single-copy BUSCOs (S)
+1	Complete and duplicated BUSCOs (D)
+1	Fragmented BUSCOs (F)
+301	Missing BUSCOs (M)
+303	Total BUSCO groups searched
+```
+
 ##### Evaluating assembly structure using TransRate
 
 ```
@@ -110,6 +122,48 @@ This little code snippet will make it easier to view this file.
 ```
 paste <(sed -n 1p $HOME/assembly_practical/reports/transrate*/assemblies.csv | tr , '\n') \
 <(sed -n 2p $HOME/assembly_practical/reports/transrate*/assemblies.csv | tr , '\n')
+```
+
+```
+n_seqs	104
+smallest	206
+largest	3036
+n_bases	90282
+mean_len	868.09615
+n_under_200	0
+n_over_1k	33
+n_over_10k	0
+n_with_orf	53
+mean_orf_percent	75.34392
+n90	357
+n70	875
+n50	1326
+n30	1751
+n10	2218
+gc	0.48795
+bases_n	0
+proportion_n	0.0
+fragments	79999
+fragments_mapped	79400
+p_fragments_mapped	0.99251
+good_mappings	77022
+p_good_mapping	0.96279
+bad_mappings	2378
+potential_bridges	20
+bases_uncovered	1605
+p_bases_uncovered	0.01778
+contigs_uncovbase	32
+p_contigs_uncovbase	0.30769
+contigs_uncovered	2
+p_contigs_uncovered	0.01923
+contigs_lowcovered	15
+p_contigs_lowcovered	0.14423
+contigs_segmented	8
+p_contigs_segmented	0.07692
+score	0.57688
+optimal_score	0.66115
+cutoff	0.23415
+weighted	5638.68556
 ```
 
 ##### Quantification
