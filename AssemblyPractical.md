@@ -45,7 +45,7 @@ MEM=7 \
 CPU=2 \
 READ1=$HOME/share/Day04/read.1.fastq \
 READ2=$HOME/share/Day04/read.2.fastq \
-RUNOUT=ORPtest
+RUNOUT=ORPtest_YOURNAME
 ```
 
 Let's unpack this:
@@ -69,12 +69,15 @@ How many resources do you need?
 
 So you have an assembly, now how good is it? One way is to look at the assembly content. Are all the expected genes present? Fo this part of the exercise, We're going to use a 'real' assembly.
 
-**Note:** The ORP runs BUSCO automatically, and has done so for your dummy assembly. See ``
+**Note:** The ORP runs BUSCO automatically, and has done so for your dummy assembly. See `$HOME/assembly_practical/reports/run*orthomerged/short_summary*txt`. A real assembly would score **much** better, hopefully...
 
 ```
 mkdir $HOME/assembly_eval && cd $HOME/assembly_eval
 
-python $(which run_BUSCO.py) -m transcriptome -i $HOME/share/Day04/SRR1221220.orthomerged.fasta --out SRR1221220 -c 2
+python $(which run_BUSCO.py) -c 2 \
+-m transcriptome \
+-i $HOME/share/Day04/SRR1221220.orthomerged.fasta \
+--out SRR1221220_ORPtest_YOURNAME
 ```
 
 Unpacking
@@ -86,4 +89,50 @@ Unpacking
 
 ##### Evaluating assembly structure using TransRate
 
+```
+cd $HOME/assembly_eval
+
+transrate -o transrate_ORPtest_YOURNAME -t 2 \
+-a $HOME/assembly_practical/assemblies/ORPtest_YOURNAME.orthomerged.fasta \
+--left $HOME/assembly_practical/rcorr/ORPtest_YOURNAME.TRIM_1P.cor.fq \
+--right $HOME/assembly_practical/rcorr/ORPtest_YOURNAME.TRIM_2P.cor.fq
+```
+Unpacking
+
+- `-t 2` Two threads. Use more for a real assembly.
+- `-a` The input assembly
+- `--left` and `--right` The reads used to make the assembly.
+
+Note: The ORP runs TransRate automatically, and has done so for your dummy assembly. See `$HOME/assembly_practical/reports/transrate*/assemblies.csv`
+
+This little code snippet will make it easier to view this file.
+
+```
+paste <(sed -n 1p $HOME/assembly_practical/reports/transrate*/assemblies.csv | tr , '\n') \
+<(sed -n 2p $HOME/assembly_practical/reports/transrate*/assemblies.csv | tr , '\n')
+```
+
 ##### Quantification
+
+
+```
+
+cd $HOME/assembly_practical/
+
+salmon index --no-version-check \
+--type quasi \
+-k 31 \
+-i ORPtest2.ortho.idx \
+-t $HOME/assembly_practical/assemblies/ORPtest2.orthomerged.fasta
+
+
+
+salmon quant --no-version-check -p 2 \
+-i ORPtest2.ortho.idx \
+--seqBias --gcBias -l a \
+-1 $HOME/assembly_practical/rcorr/ORPtest2.TRIM_1P.cor.fq \
+-2 $HOME/assembly_practical/rcorr/ORPtest2.TRIM_2P.cor.fq \
+-o $HOME/assembly_practical/quants/salmon_orthomerged_ORPtest2
+```
+
+Note: The ORP runs BUSCO automatically, and has done so for your dummy assembly. See $HOME/assembly_practical/reports/run*orthomerged/short_summary*txt. A real assembly would score much better, hopefully...
