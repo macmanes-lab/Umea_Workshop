@@ -171,15 +171,13 @@ weighted	5638.68556
 
 ```
 
-cd $HOME/assembly_practical/assembly_practical/
+cd $HOME/assembly_practical/assembly_eval/
 
 salmon index --no-version-check \
 --type quasi \
 -k 31 \
 -i ORPtest_YOURNAME.ortho.idx \
 -t $HOME/assembly_practical/assemblies/ORPtest_YOURNAME.orthomerged.fasta
-ORPtest_YOURNAME
-
 
 salmon quant --no-version-check -p 2 \
 -i ORPtest_YOURNAME.ortho.idx \
@@ -189,7 +187,7 @@ salmon quant --no-version-check -p 2 \
 -o $HOME/assembly_practical/assembly_eval/salmon_orthomerged_ORPtest_YOURNAME
 ```
 
-Note: The ORP runs BUSCO automatically, and has done so for your dummy assembly. See `$HOME/assembly_practical/quants/salmon_orthomerged_ORPtest_YOURNAME/quants.sf` A real assembly would score much better, hopefully...
+Note: The ORP runs BUSCO automatically, and has done so for your dummy assembly. See `$HOME/assembly_practical/assembly_eval/salmon_orthomerged_ORPtest_YOURNAME/quant.sf` A real assembly would score much better, hopefully...
 
 
 ```
