@@ -25,6 +25,17 @@ The workshop materials here expect that you have some familiarity with UNIX. If 
 
 This tutorial uses a very small dataset, so that everyone can have the opportunity to complete an assembly without using a truly massive amount of compute. **BUT**, if you can assembly the small dataset, you can assembly a bigger one, too, assuming you have a big enough computer.
 
+#### About the data
+
+The data used in this tutorial are from SRR1221220, which is a RNAseq dataset from the Japanese fire belly newt (_Cynops pyrrhogaster_). This is what I did, before the class.
+
+- Assembled the full dataset using the ORP
+- Quantitated gene expression using Salmon
+- Extracted out 50 of the highest expression transcripts (numbers 451-500 to be exact).
+- Mapped the reads to the fasta file of those 50 contigs using bwa mem, producing a SAM file.
+- Used Picard to move from SAM to fastq
+- Extracted a random 80,000 read pairs from the larger fastq.
+
 #### Tutorial Begins
 
 The 1st thing you should always do when logging in to a new machine is explore the directory structure. Where are the data, where are programs installed, etc.
