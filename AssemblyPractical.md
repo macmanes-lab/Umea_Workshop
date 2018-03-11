@@ -34,7 +34,7 @@ The data used in this tutorial are from SRR1221220, which is a RNAseq dataset fr
 - Extracted out 50 of the highest expression transcripts (numbers 451-500 to be exact).
 - Mapped the reads to the fasta file of those 50 contigs using bwa mem, producing a SAM file.
 - Used Picard to move from SAM to fastq
-- Extracted a random 80,000 read pairs from the larger fastq.
+- Extracted a random 80,000 read pairs from the larger fastq using seqtk.
 
 #### Tutorial Begins
 
