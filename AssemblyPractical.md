@@ -8,9 +8,9 @@ Transcriptome Assembly Practical
   - BUSCO and TransRate
 - Quantifying transcript expression levels
   - Using Salmon
-- Functionally annotating transcripts
+- Functionally annotating transcripts (time permitting)
   - dammit
-- Predicting coding regions
+- Predicting coding regions (won't get here, but see code)
   - TransDecoder
 
 #### Oyster River Protocol
@@ -216,9 +216,41 @@ Single_53       1355    1235.517        7926.712663     1055.000000
 Shannon_ORPtest.shannon_cremaining1_62_0        3036    3096.499        7700.570713     2568.647157
 ```
 
+#### Annotation using dammit (time permitting)
+See http://www.camillescott.org/dammit/installing.html
+
+##### installing
+
+```
+sudo apt-get update
+sudo apt-get install python-pip python-dev python-numpy
+pip install --upgrade pip
+sudo pip install -U setuptools
+sudo pip install dammit
+```
+
+##### Running the Annotation
+
+```
+mkdir $HOME/busco_dbs
+
+dammit databases --database-dir $HOME/dammit_dbs \
+--install --busco-group eukaryota
+
+dammit annotate $HOME/assembly_practical/assemblies/ORPtest_YOURNAME.orthomerged.fa \
+--busco-group eukaryota \
+--n_threads 4 \
+--database-dir $HOME/dammit_dbs/ \
+--full
+
+```
+
+
+
 #### Bibliography
 
 1. Oyster River Protocol: https://www.biorxiv.org/content/early/2017/11/22/177253
 2. BUSCO: doi: 10.1093/molbev/msx319
 3. TrasRate: doi: 10.1101/gr.196469.115
 4. Salmon: doi: 10.1038/nmeth.4197
+5. dammit: http://www.camillescott.org/dammit/
