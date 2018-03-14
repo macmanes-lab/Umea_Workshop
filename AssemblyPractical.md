@@ -50,7 +50,7 @@ What is this `&&` thing?? It basically serves to link two commands together, **I
 
 ##### Assemble using the ORP
 
-There is one small bug in the Shannon assembler, which I fixed after Nicon made the Docker container. Eaxy fix (which you should never have to do, again).
+There is one small bug in the Shannon assembler, which I fixed after Nico made the Docker container. Easy fix (which you should never have to do, again).
 
 
 ```
