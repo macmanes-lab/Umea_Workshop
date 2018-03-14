@@ -54,7 +54,7 @@ There is one small bug in the Shannon assembler, which I fixed after Nicon made 
 
 
 ```
-sed -i 's_"--prefix"_"-q 33 --prefix"_g' $HOME/Oyster_River_Protocol/software/Shannon/run_quorum.py
+sed -i 's_--prefix_-q 33 --prefix_g' $HOME/Oyster_River_Protocol/software/Shannon/run_quorum.py
 ```
 
 ```
