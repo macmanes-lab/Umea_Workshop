@@ -50,6 +50,13 @@ What is this `&&` thing?? It basically serves to link two commands together, **I
 
 ##### Assemble using the ORP
 
+There is one small bug in the Shannon assembler, which I fixed after Nicon made the Docker container. Eaxy fix (which you should never have to do, again).
+
+
+```
+sed -i 's_"--prefix"_"-q 33 --prefix"_g' $HOME/Oyster_River_Protocol/software/Shannon/run_quorum.py
+```
+
 ```
 $HOME/Oyster_River_Protocol/oyster.mk main \
 MEM=7 \
@@ -219,7 +226,7 @@ Shannon_ORPtest.shannon_cremaining1_62_0        3036    3096.499        7700.570
 #### Annotation using dammit (time permitting)
 See http://www.camillescott.org/dammit/installing.html
 
-##### installing
+##### installing (this has been done for you)
 
 ```
 sudo apt-get update
@@ -229,7 +236,7 @@ sudo pip install -U setuptools
 sudo pip install dammit
 ```
 
-##### Running the Annotation
+##### Running the Annotation (broke, as of Wed. PM)
 
 ```
 mkdir $HOME/busco_dbs
