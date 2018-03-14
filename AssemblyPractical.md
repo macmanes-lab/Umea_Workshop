@@ -131,6 +131,7 @@ Note: The ORP runs TransRate automatically, and has done so for your dummy assem
 This little code snippet will make it easier to view this file.
 
 ```
+
 paste <(sed -n 1p $HOME/assembly_practical/reports/transrate*/assemblies.csv | tr , '\n') \
 <(sed -n 2p $HOME/assembly_practical/reports/transrate*/assemblies.csv | tr , '\n')
 ```
@@ -214,3 +215,10 @@ Single_50       936     786.806 6177.772999     523.612910
 Single_53       1355    1235.517        7926.712663     1055.000000
 Shannon_ORPtest.shannon_cremaining1_62_0        3036    3096.499        7700.570713     2568.647157
 ```
+
+#### Bibliography
+
+1. Oyster River Protocol: https://www.biorxiv.org/content/early/2017/11/22/177253
+2. BUSCO: doi: 10.1093/molbev/msx319
+3. TrasRate: doi: 10.1101/gr.196469.115
+4. Salmon: doi: 10.1038/nmeth.4197
